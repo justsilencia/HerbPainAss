@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             reader.close();
 
             // Display the first 100 characters in the TextView
-            textView.setText(stringBuilder.toString());
+            //textView.setText(stringBuilder.toString());
             Log.d(TAG, "Good");
         } catch (IOException e) {
             e.printStackTrace();

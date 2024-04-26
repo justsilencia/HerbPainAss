@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 
 import android.Manifest;
@@ -59,6 +60,32 @@ public class MainActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
+        }
+
+        try {
+            String checkID = "";
+            String checkMAC = "";
+            String cmd1 = "getprop ro.hw.rfid";
+            String cmd2 = "cat /sys/class/net/wlan0/address";
+            Process ifc = Runtime.getRuntime().exec(cmd1);
+            Process ifc2 = Runtime.getRuntime().exec(cmd2);
+
+            BufferedReader bis = new BufferedReader(new InputStreamReader(ifc.getInputStream()));
+            BufferedReader bis2 = new BufferedReader(new InputStreamReader(ifc2.getInputStream()));
+
+            String getID = bis.readLine();
+            String getMAC = bis2.readLine();
+
+            if (getID != checkID) {
+                //finish();
+            }
+
+            if (getMAC != checkMAC) {
+                //finish();
+            }
+            ifc.destroy();
+        } catch (java.io.IOException e) {
+            Log.d("Hey", e.getMessage());
         }
 
         //Copy JSON File from assets

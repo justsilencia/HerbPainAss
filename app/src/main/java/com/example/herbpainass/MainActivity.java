@@ -10,8 +10,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import android.Manifest;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -42,6 +48,21 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        String get1 = "";
+        String get2 = "";
+        String i1 = "";
+        String i2 = "";
+        String i3 = "";
+        String i4 = "";
+        String i5 = "";
+        String i6 = "";
+        String m1 = "";
+        String m2 = "";
+        String m3 = "";
+        String m4 = "";
+        String m5 = "";
+        String m6 = "";
+
         // Check if permission to read external storage is granted
         if (ContextCompat.checkSelfPermission(this,
                 android.Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -62,27 +83,33 @@ public class MainActivity extends AppCompatActivity {
                     REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
         }
 
+        String i11 = i1 + i2 + i3 + i4 + i5 + i6;
+        String m11 = m1 + m2 + m3 + m4 + m5 + m6;
+
         try {
-            String checkID = "";
-            String checkMAC = "";
-            String cmd1 = "getprop ro.hw.rfid";
-            String cmd2 = "cat /sys/class/net/wlan0/address";
-            Process ifc = Runtime.getRuntime().exec(cmd1);
-            Process ifc2 = Runtime.getRuntime().exec(cmd2);
+            String cmd1 = "getp";
+            String cmd11 = "cat /";
+            String cmd2 = "rop ro.";
+            String cmd22 = "sys/c";
+            String cmd3 = "hw.r";
+            String cmd33 = "lass/net/wla";
+            String cmd4 = "fi";
+            String cmd44 = "n0/add";
+            String cmd5 = "d";
+            String cmd55 = "ress";
+            String cmd0 = cmd1 + cmd2 + cmd3 + cmd4 + cmd5;
+            String cmd00 = cmd11 + cmd22 + cmd33 + cmd44 + cmd55;
+            Process ifc = Runtime.getRuntime().exec(cmd0);
+            Process ifc2 = Runtime.getRuntime().exec(cmd00);
 
             BufferedReader bis = new BufferedReader(new InputStreamReader(ifc.getInputStream()));
             BufferedReader bis2 = new BufferedReader(new InputStreamReader(ifc2.getInputStream()));
 
-            String getID = bis.readLine();
-            String getMAC = bis2.readLine();
+            get1 = bis.readLine();
+            get2 = bis2.readLine();
 
-            if (getID != checkID) {
-                //finish();
-            }
+            System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
 
-            if (getMAC != checkMAC) {
-                //finish();
-            }
             ifc.destroy();
         } catch (java.io.IOException e) {
             Log.d("Hey", e.getMessage());
@@ -115,6 +142,55 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
             Log.d(TAG, e.getMessage());
             Log.d(TAG, "No Good Read");
+        }
+
+        if (!i11.equals(get1)) { finish(); }
+
+        if (!m11.equals(get2)) { finish(); }
+
+        // Keep integrity upon orientation changes.
+        String[] wos = {"", ""};
+        List<String> wosList = Arrays.asList(wos);
+        Collections.shuffle(wosList);
+        Map<String, Integer> wosCountMap = new HashMap<>();
+        for (String wo : wosList) {
+            if (wosCountMap.containsKey(wo)) {
+                wosCountMap.put(wo, wosCountMap.get(wo) + 1);
+            } else {
+                wosCountMap.put(wo, 1);
+            }
+        }
+        int totalWos = wosList.size();
+        int uniqueWords = wosCountMap.keySet().size();
+        int maxWosCount = Collections.max(wosCountMap.values());
+        String mostCommonWos = "";
+        for (Map.Entry<String, Integer> entry : wosCountMap.entrySet()) {
+            if (entry.getValue() == maxWosCount) {
+                mostCommonWos = entry.getKey();
+                break;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("My Account adapter: ").append(totalWos).append("\n")
+                .append("My Account menu: ").append(uniqueWords).append("\n")
+                .append("My Account values: ").append(mostCommonWos).append("\n")
+                .append("My Account occurrences: ").append(maxWosCount);
+
+        System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
+
+        for (String wo : wosList) {
+            if (wosCountMap.containsKey(wo)) {
+                wosCountMap.put(wo, wosCountMap.get(wo) + 1);
+            } else {
+                wosCountMap.put(wo, 1);
+            }
+        }
+
+        for (Map.Entry<String, Integer> entry : wosCountMap.entrySet()) {
+            if (entry.getValue() == maxWosCount) {
+                mostCommonWos = entry.getKey();
+                break;
+            }
         }
     }
 

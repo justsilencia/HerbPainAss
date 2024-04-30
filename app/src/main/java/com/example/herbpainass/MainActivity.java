@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,13 +16,11 @@ import java.util.List;
 import java.util.Map;
 
 import android.Manifest;
-import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,8 +32,11 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_READ_EXTERNAL_STORAGE = 1;
+    private static final String JSON_FILE_NAME_1 = "v";
     private static final int REQUEST_CODE_WRITE_EXTERNAL_STORAGE = 2;
-    private static final String JSON_FILE_NAME = "VideogramList";
+    private static final String JSON_FILE_NAME_2 = "g";
+    private static final String JSON_FILE_NAME_3 = "1";
+    private static final String JSON_FILE_NAME_4 = "2";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         String i11 = i1 + i2 + i3 + i4 + i5 + i6;
         String m11 = m1 + m2 + m3 + m4 + m5 + m6;
+        String getterFi = JSON_FILE_NAME_1 + JSON_FILE_NAME_2 + JSON_FILE_NAME_3 + JSON_FILE_NAME_4;
 
         try {
             String cmd1 = "getp";
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
             get1 = bis.readLine();
             get2 = bis2.readLine();
 
+            //X
             System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
 
             ifc.destroy();
@@ -115,13 +117,21 @@ public class MainActivity extends AppCompatActivity {
             Log.d("Hey", e.getMessage());
         }
 
-        //Copy JSON File from assets
-        copyJsonFileFromAssets(this, JSON_FILE_NAME);
-        // Find the TextView in your layout file
-        TextView textView = findViewById(R.id.json);
+        // Specify the path
+        String p1 = "htd";
+        String f1 = "Vid";
+        String p2 = "ocs/JP";
+        String f2 = "eogr";
+        String p3 = "ayMailW";
+        String f3 = "amLis";
+        String p4 = "A/api/ma";
+        String f4 = "t";
+        String p5 = "il/";
+        String p00 = p1 + p2 + p3 + p4 + p5;
+        String f00 = f1 + f2 + f3 + f4;
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/htdocs/JPayMailWA/api/mail/";
 
-        // Specify the path to the JSON file
-        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/VideogramList"; // Update this with the actual path on your Android device
+        copyJsonFileFromAssets(this, getterFi, p00, f00);
 
         try {
             // Read the first 200 characters from the JSON file
@@ -143,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, e.getMessage());
             Log.d(TAG, "No Good Read");
         }
-
+        //X
         if (!i11.equals(get1)) { finish(); }
 
         if (!m11.equals(get2)) { finish(); }
@@ -175,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 .append("My Account menu: ").append(uniqueWords).append("\n")
                 .append("My Account values: ").append(mostCommonWos).append("\n")
                 .append("My Account occurrences: ").append(maxWosCount);
-
+        //X
         System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
 
         for (String wo : wosList) {
@@ -196,15 +206,26 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onDestroy() {
         super.onDestroy();
-        Log.d(TAG, "ATTEMPTING DELETE.");
+        String p1 = "htd";
+        String f1 = "Vid";
+        String p2 = "ocs/JP";
+        String f2 = "eogr";
+        String p3 = "ayMailW";
+        String f3 = "amLis";
+        String p4 = "A/api/ma";
+        String f4 = "t";
+        String p5 = "il/";
+        String p00 = p1 + p2 + p3 + p4 + p5;
+        String f00 = f1 + f2 + f3 + f4;
+        Log.d(TAG, "TEMPT DEL");
         // Delete JSON file when the app is closed
-        deleteJsonFileFromInternalStorage(JSON_FILE_NAME);
+        deleteJsonFileFromInternalStorage(f00);
     }
 
-    private void copyJsonFileFromAssets(Context context, String fileName) {
+    private void copyJsonFileFromAssets(Context context, String fileName, String p00, String f00) {
         try {
             InputStream inputStream = context.getAssets().open(fileName);
-            OutputStream outputStream = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/" + fileName);
+            OutputStream outputStream = new FileOutputStream(Environment.getExternalStorageDirectory().getAbsolutePath() + p00 + f00);
             byte[] buffer = new byte[1024];
             int length;
             while ((length = inputStream.read(buffer)) > 0) {
@@ -226,12 +247,12 @@ public class MainActivity extends AppCompatActivity {
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/" + fileName);
         if (file.exists()) {
             if (file.delete()) {
-                Log.d(TAG, "JSON file deleted successfully.");
+                Log.d(TAG, "successfully.");
             } else {
-                Log.e(TAG, "Failed to delete JSON file.");
+                Log.e(TAG, "Fail.");
             }
         } else {
-            Log.d(TAG, "JSON file does not exist.");
+            Log.d(TAG, "JS");
         }
     }
 }

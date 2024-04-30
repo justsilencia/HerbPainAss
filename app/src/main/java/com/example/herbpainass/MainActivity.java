@@ -50,18 +50,18 @@ public class MainActivity extends AppCompatActivity {
 
         String get1 = "";
         String get2 = "";
-        String i1 = "";
-        String i2 = "";
-        String i3 = "";
-        String i4 = "";
-        String i5 = "";
-        String i6 = "";
-        String m1 = "";
-        String m2 = "";
-        String m3 = "";
-        String m4 = "";
-        String m5 = "";
-        String m6 = "";
+        String i1 = "E200";
+        String i2 = "680D0";
+        String i3 = "0004004";
+        String i4 = "67C3";
+        String i5 = "50";
+        String i6 = "AB";
+        String m1 = "0a:";
+        String m2 = "04:";
+        String m3 = "67:";
+        String m4 = "c3:";
+        String m5 = "50:";
+        String m6 = "ab";
 
         // Check if permission to read external storage is granted
         if (ContextCompat.checkSelfPermission(this,

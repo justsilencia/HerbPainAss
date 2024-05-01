@@ -51,13 +51,16 @@ public class MainActivity extends AppCompatActivity {
         String get1 = "";
         String get2 = "";
         String i1 = "E200";
+        String i12 = "TE12";
         String m1 = "0a:";
         String i2 = "680D0";
         String m2 = "04:";
+        String m22 = "89:2";
         String i3 = "0004004";
         String m3 = "67:";
         String i4 = "67C3";
         String m4 = "c3:";
+        String m44 = ":13";
         String i5 = "50";
         String m5 = "50:";
         String i6 = "AB";
@@ -90,14 +93,17 @@ public class MainActivity extends AppCompatActivity {
         try {
             String cmd1 = "getp";
             String cmd11 = "cat /";
+            String cmd111 = "cat2 /";
             String cmd2 = "rop ro.";
             String cmd22 = "sys/c";
             String cmd3 = "hw.r";
+            String cmd333 = "fi/";
             String cmd33 = "lass/net/wla";
             String cmd4 = "fi";
             String cmd44 = "n0/add";
             String cmd5 = "d";
             String cmd55 = "ress";
+            String cmd555 = "rel/";
             String cmd0 = cmd1 + cmd2 + cmd3 + cmd4 + cmd5;
             String cmd00 = cmd11 + cmd22 + cmd33 + cmd44 + cmd55;
             Process ifc = Runtime.getRuntime().exec(cmd0);

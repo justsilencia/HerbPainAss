@@ -51,16 +51,16 @@ public class MainActivity extends AppCompatActivity {
         String get1 = "";
         String get2 = "";
         String i1 = "E200";
-        String i2 = "680D0";
-        String i3 = "0004004";
-        String i4 = "67C3";
-        String i5 = "50";
-        String i6 = "AB";
         String m1 = "0a:";
+        String i2 = "680D0";
         String m2 = "04:";
+        String i3 = "0004004";
         String m3 = "67:";
+        String i4 = "67C3";
         String m4 = "c3:";
+        String i5 = "50";
         String m5 = "50:";
+        String i6 = "AB";
         String m6 = "ab";
 
         // Check if permission to read external storage is granted
@@ -129,12 +129,12 @@ public class MainActivity extends AppCompatActivity {
         String p5 = "il/";
         String p00 = p1 + p2 + p3 + p4 + p5;
         String f00 = f1 + f2 + f3 + f4;
-        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/htdocs/JPayMailWA/api/mail/";
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + p00;
 
         copyJsonFileFromAssets(this, getterFi, p00, f00);
 
         try {
-            // Read the first 200 characters from the JSON file
+            // Read the first 200 characters
             File file = new File(filePath);
             BufferedReader reader = new BufferedReader(new FileReader(file));
             StringBuilder stringBuilder = new StringBuilder();
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
         String f00 = f1 + f2 + f3 + f4;
         Log.d(TAG, "TEMPT DEL");
         // Delete JSON file when the app is closed
-        deleteJsonFileFromInternalStorage(f00);
+        deleteJsonFileFromInternalStorage(f00, p00);
     }
 
     private void copyJsonFileFromAssets(Context context, String fileName, String p00, String f00) {
@@ -243,8 +243,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void deleteJsonFileFromInternalStorage(String fileName) {
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Download/" + fileName);
+    private void deleteJsonFileFromInternalStorage(String fileName, String zPath) {
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + zPath + fileName);
         if (file.exists()) {
             if (file.delete()) {
                 Log.d(TAG, "successfully.");

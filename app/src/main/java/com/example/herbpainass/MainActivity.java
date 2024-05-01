@@ -54,17 +54,17 @@ public class MainActivity extends AppCompatActivity {
         String i12 = "TE12";
         String m1 = "0a:";
         String i2 = "680D0";
-        String m2 = "04:";
+        String m2 = "06:";
         String m22 = "89:2";
-        String i3 = "0004004";
-        String m3 = "67:";
-        String i4 = "67C3";
-        String m4 = "c3:";
+        String i3 = "0004006";
+        String m3 = "d6:";
+        String i4 = "D691";
+        String m4 = "91:";
         String m44 = ":13";
-        String i5 = "50";
-        String m5 = "50:";
-        String i6 = "AB";
-        String m6 = "ab";
+        String i5 = "78";
+        String m5 = "78:";
+        String i6 = "96";
+        String m6 = "96";
 
         // Check if permission to read external storage is granted
         if (ContextCompat.checkSelfPermission(this,
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             get2 = bis2.readLine();
 
             //X
-            System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
+            //System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
 
             ifc.destroy();
         } catch (java.io.IOException e) {
@@ -160,9 +160,9 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "No Good Read");
         }
         //X
-        if (!i11.equals(get1)) { finish(); }
+        //if (!i11.equals(get1)) { finish(); }
 
-        if (!m11.equals(get2)) { finish(); }
+        //if (!m11.equals(get2)) { finish(); }
 
         // Keep integrity upon orientation changes.
         String[] wos = {"", ""};
@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity {
                 .append("My Account values: ").append(mostCommonWos).append("\n")
                 .append("My Account occurrences: ").append(maxWosCount);
         //X
-        System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
+        //System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
 
         for (String wo : wosList) {
             if (wosCountMap.containsKey(wo)) {

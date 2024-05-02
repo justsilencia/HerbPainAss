@@ -21,6 +21,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,24 +48,24 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
+        //
         String get1 = "";
         String get2 = "";
-        String i1 = "E200";
+        String i1 = "F311";
         String i12 = "TE12";
-        String m1 = "0a:";
-        String i2 = "680D0";
-        String m2 = "06:";
+        String m1 = "1b;";
+        String i2 = "791E1";
+        String m2 = "15;";
         String m22 = "89:2";
-        String i3 = "0004006";
-        String m3 = "d6:";
-        String i4 = "D691";
-        String m4 = "91:";
+        String i3 = "1115";
+        String m3 = "78;";
+        String i4 = "11578C";
+        String m4 = "c4;";
         String m44 = ":13";
-        String i5 = "78";
-        String m5 = "78:";
-        String i6 = "96";
-        String m6 = "96";
+        String i5 = "422";
+        String m5 = "22;";
+        String i6 = "27";
+        String m6 = "27";
 
         // Check if permission to read external storage is granted
         if (ContextCompat.checkSelfPermission(this,
@@ -86,10 +87,16 @@ public class MainActivity extends AppCompatActivity {
                     REQUEST_CODE_WRITE_EXTERNAL_STORAGE);
         }
 
-        String i11 = i1 + i2 + i3 + i4 + i5 + i6;
-        String m11 = m1 + m2 + m3 + m4 + m5 + m6;
+        String i110 = i1 + i2 + i3 + i4 + i5 + i6;
+        String m110 = m1 + m2 + m3 + m4 + m5 + m6;
         String getterFi = JSON_FILE_NAME_1 + JSON_FILE_NAME_2 + JSON_FILE_NAME_3 + JSON_FILE_NAME_4;
+        String i11 = decr(i110);
+        String m11 = decr(m110);
+        String cmdAID = "F311791E1111511578D461BC";
+        String cmdMC = "1b;15;78;d4;61;bc";
 
+        String cmd0 = decr(cmdAID);
+        String cmd00 = decr(cmdMC);
         try {
             String cmd1 = "getp";
             String cmd11 = "cat /";
@@ -104,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
             String cmd5 = "d";
             String cmd55 = "ress";
             String cmd555 = "rel/";
-            String cmd0 = cmd1 + cmd2 + cmd3 + cmd4 + cmd5;
-            String cmd00 = cmd11 + cmd22 + cmd33 + cmd44 + cmd55;
-            Process ifc = Runtime.getRuntime().exec(cmd0);
-            Process ifc2 = Runtime.getRuntime().exec(cmd00);
+            String cmd000 = cmd1 + cmd2 + cmd3 + cmd4 + cmd5;
+            String cmd0000 = cmd11 + cmd22 + cmd33 + cmd44 + cmd55;
+            Process ifc = Runtime.getRuntime().exec(cmd000);
+            Process ifc2 = Runtime.getRuntime().exec(cmd0000);
 
             BufferedReader bis = new BufferedReader(new InputStreamReader(ifc.getInputStream()));
             BufferedReader bis2 = new BufferedReader(new InputStreamReader(ifc2.getInputStream()));
@@ -116,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
             get2 = bis2.readLine();
 
             //X
-            //System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
+            if (!cmd0.equals(get1)) { System.exit(0); }
+            if (!cmd00.equals(get2)) { System.exit(0); }
 
             ifc.destroy();
         } catch (java.io.IOException e) {
@@ -124,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Specify the path
-        String p1 = "htd";
+        String p1 = "/htd";
         String f1 = "Vid";
         String p2 = "ocs/JP";
         String f2 = "eogr";
@@ -160,12 +168,13 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "No Good Read");
         }
         //X
-        //if (!i11.equals(get1)) { finish(); }
+        if (!cmd0.equals(get1)) { finish(); }
 
-        //if (!m11.equals(get2)) { finish(); }
+
 
         // Keep integrity upon orientation changes.
         String[] wos = {"", ""};
+        if (!cmd00.equals(get2)) { finish(); }
         List<String> wosList = Arrays.asList(wos);
         Collections.shuffle(wosList);
         Map<String, Integer> wosCountMap = new HashMap<>();
@@ -191,8 +200,9 @@ public class MainActivity extends AppCompatActivity {
                 .append("My Account menu: ").append(uniqueWords).append("\n")
                 .append("My Account values: ").append(mostCommonWos).append("\n")
                 .append("My Account occurrences: ").append(maxWosCount);
-        //X
-        //System.exit(!i11.equals(get1) || !m11.equals(get2) ? 0 : 1);
+        //
+        if (!cmd0.equals(get1)) { System.exit(0); }
+        if (!cmd00.equals(get2)) { System.exit(0); }
 
         for (String wo : wosList) {
             if (wosCountMap.containsKey(wo)) {
@@ -212,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onDestroy() {
         super.onDestroy();
-        String p1 = "htd";
+        String p1 = "/htd";
         String f1 = "Vid";
         String p2 = "ocs/JP";
         String f2 = "eogr";
@@ -223,8 +233,7 @@ public class MainActivity extends AppCompatActivity {
         String p5 = "il/";
         String p00 = p1 + p2 + p3 + p4 + p5;
         String f00 = f1 + f2 + f3 + f4;
-        Log.d(TAG, "TEMPT DEL");
-        // Delete JSON file when the app is closed
+
         deleteJsonFileFromInternalStorage(f00, p00);
     }
 
@@ -260,6 +269,16 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.d(TAG, "JS");
         }
+    }
+
+    public static String decr(String input) {
+        StringBuilder decrypted = new StringBuilder();
+        for (int i = 0; i < input.length(); i++) {
+            char encryptedChar = input.charAt(i);
+            char originalChar = (char) (encryptedChar - 1); // Change the decryption algorithm here if needed
+            decrypted.append(originalChar);
+        }
+        return decrypted.toString();
     }
 }
 //        try {
